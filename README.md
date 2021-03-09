@@ -1,5 +1,5 @@
 <div class="container">
-<h1>Дом</h1>
+<h1>Дом </h1>
 <p>Это сервис который помогает управлять многоквартирным домом.</p>
 <p>Написан на <b style="color: coral">Python</b>.
  За основу взят <b style="color: coral">Django 3.1</b> с надстройкой <b style="color: coral">Django REST</b>
