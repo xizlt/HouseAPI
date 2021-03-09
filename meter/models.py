@@ -4,9 +4,9 @@ from account.models import Profile
 
 
 class Meter(models.Model):
-    name = models.CharField(max_length=10, unique=True)
-    type = models.ForeignKey('TypeMeter', on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
+    name = models.CharField("Название", max_length=10, unique=True)
+    type = models.ForeignKey('TypeMeter', on_delete=models.CASCADE, verbose_name="Тип")
+    created = models.DateTimeField("Создано", auto_now_add=True)
 
     class Meta:
         ordering = ['name']
@@ -18,7 +18,7 @@ class Meter(models.Model):
 
 
 class TypeMeter(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField("Название", max_length=200, unique=True)
 
     class Meta:
         verbose_name = 'Тип счетчика'
@@ -29,10 +29,10 @@ class TypeMeter(models.Model):
 
 
 class Indication(models.Model):
-    meter = models.ForeignKey(Meter, on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
-    value = models.PositiveSmallIntegerField()
-    used = models.SmallIntegerField()
+    meter = models.ForeignKey(Meter, on_delete=models.CASCADE, verbose_name="Счетчик")
+    created = models.DateTimeField("Создано", auto_now_add=True)
+    value = models.PositiveSmallIntegerField("Показание")
+    used = models.SmallIntegerField("Потреблено")
 
     class Meta:
         ordering = ['-created']
@@ -44,8 +44,8 @@ class Indication(models.Model):
 
 
 class ItemMeter(models.Model):
-    meter = models.ForeignKey(Meter, on_delete=models.CASCADE)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owen')
+    meter = models.ForeignKey(Meter, on_delete=models.CASCADE, verbose_name="Счетчик")
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owen', verbose_name="Пользователь")
 
     class Meta:
         verbose_name = 'Владелец счетчика'

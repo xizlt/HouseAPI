@@ -6,13 +6,14 @@ from account.models import Profile
 
 
 class Ad(models.Model):
-    title = models.CharField(max_length=200)
-    type = models.ForeignKey('TypeAd', on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
-    beginning = models.DateTimeField(default=timezone.now)
-    ending = models.DateTimeField(blank=True, null=True)
-    text = models.TextField(max_length=2000)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile', blank=True, null=True)
+    title = models.CharField("Название", max_length=200)
+    type = models.ForeignKey('TypeAd', on_delete=models.CASCADE, verbose_name="Тип")
+    created = models.DateTimeField("Создано", auto_now_add=True)
+    beginning = models.DateTimeField("Опубликовать", default=timezone.now)
+    ending = models.DateTimeField("Снять с публикации", blank=True, null=True)
+    text = models.TextField("Текст", max_length=2000)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile', blank=True, null=True,
+                             verbose_name="Пользователь")
 
     class Meta:
         ordering = ['-created']
@@ -24,7 +25,7 @@ class Ad(models.Model):
 
 
 class TypeAd(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField("Название", max_length=200, unique=True)
 
     class Meta:
         verbose_name = 'Тип объявления'

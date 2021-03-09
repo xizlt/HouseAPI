@@ -5,13 +5,13 @@ from account.models import Profile
 
 
 class Reservation(models.Model):
-    type = models.ForeignKey('TypeReservation', on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
-    update = models.DateTimeField(auto_now=True)
-    data_begin = models.DateTimeField()
-    data_end = models.DateTimeField()
-    executed = models.BooleanField(default=False)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    type = models.ForeignKey('TypeReservation', on_delete=models.CASCADE, verbose_name="Тип")
+    created = models.DateTimeField("Создано", auto_now_add=True)
+    update = models.DateTimeField("Обновлено", auto_now=True)
+    data_begin = models.DateTimeField("Дата начала")
+    data_end = models.DateTimeField("Дата конец")
+    executed = models.BooleanField("Исполнено",default=False)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name="Пользователь")
 
     class Meta:
         ordering = ['-data_begin']
@@ -23,7 +23,7 @@ class Reservation(models.Model):
 
 
 class TypeReservation(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField("Название", max_length=200, unique=True)
 
     class Meta:
         verbose_name = 'Тип брони'

@@ -3,10 +3,10 @@ from django.db import models
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь")
     date_of_birth = models.DateField("Дата рождения", blank=True, null=True)
     photo = models.ImageField("Аватарка", upload_to='users/%Y/%m/%d/', blank=True)
-    status = models.ForeignKey('Status', on_delete=models.CASCADE, blank=True, null=True)
+    status = models.ForeignKey('Status', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Статус")
     phone = models.IntegerField("Телефон", blank=True, null=True)
 
     city = models.CharField("Город", default="Санкт-Петербург", max_length=100)

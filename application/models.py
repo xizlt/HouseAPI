@@ -5,13 +5,13 @@ from account.models import Profile
 
 
 class Application(models.Model):
-    title = models.CharField(max_length=200)
-    type = models.ForeignKey('TypeApplication', on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
-    due_data = models.DateTimeField()
-    executed = models.BooleanField(default=False)
-    mark = models.TextField(max_length=2000, blank=True)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    title = models.CharField("Название", ax_length=200)
+    type = models.ForeignKey('TypeApplication', on_delete=models.CASCADE, verbose_name="Тип")
+    created = models.DateTimeField("Создано", auto_now_add=True)
+    due_data = models.DateTimeField("Дата исполнения")
+    executed = models.BooleanField("Исполненость", default=False)
+    mark = models.TextField("Пометка", max_length=2000, blank=True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name="Пользователь")
 
     class Meta:
         ordering = ['-created']
@@ -23,7 +23,7 @@ class Application(models.Model):
 
 
 class TypeApplication(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField("Название", max_length=200, unique=True)
 
     class Meta:
         verbose_name = 'Тип заявки'

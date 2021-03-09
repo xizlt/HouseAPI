@@ -2,8 +2,8 @@ from django.db import models
 
 
 class ParameterType(models.Model):
-    title = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100, unique=True)
+    title = models.CharField("Название", max_length=100)
+    slug = models.SlugField("Название", max_length=100, unique=True)
 
     class Meta:
         verbose_name = 'Тип параметра'
@@ -14,8 +14,8 @@ class ParameterType(models.Model):
 
 
 class Parameter(models.Model):
-    title = models.ForeignKey(ParameterType, on_delete=models.CASCADE)
-    value = models.SmallIntegerField()
+    title = models.ForeignKey(ParameterType, on_delete=models.CASCADE, verbose_name="Название")
+    value = models.SmallIntegerField("Значение")
 
     class Meta:
         abstract = True

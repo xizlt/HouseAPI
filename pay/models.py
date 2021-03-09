@@ -5,7 +5,7 @@ from meter.models import Indication
 
 
 class Accrued(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
     accrued = models.SmallIntegerField("Начислено")
     payment = models.BooleanField("Оплата", default=False)
     created = models.DateField("Дата создания", auto_now_add=True)
@@ -20,7 +20,7 @@ class Accrued(models.Model):
 
 
 class Payment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
     sum = models.SmallIntegerField("Оплачено")
     created = models.DateField("Дата создания", auto_now_add=True)
 
