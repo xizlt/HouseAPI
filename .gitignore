@@ -2,14 +2,14 @@
 *.log
 *.pot
 *.pyc
-__pycache__
+/__pycache__
 db.sqlite3
 media
 node_modules
-venv/
+/venv
 .idea
 *.bak
-users/
+/users
 
 # If you are using PyCharm #
 .idea/**/workspace.xml
