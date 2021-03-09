@@ -15,6 +15,8 @@ class Reservation(models.Model):
 
     class Meta:
         ordering = ['-data_begin']
+        verbose_name = 'Бронь'
+        verbose_name_plural = 'Брони'
 
     def __str__(self):
         return self.type.title
@@ -22,6 +24,10 @@ class Reservation(models.Model):
 
 class TypeReservation(models.Model):
     title = models.CharField(max_length=200, unique=True)
+
+    class Meta:
+        verbose_name = 'Тип брони'
+        verbose_name_plural = 'Типы броний'
 
     def __str__(self):
         return self.title

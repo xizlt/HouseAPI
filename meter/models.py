@@ -10,6 +10,8 @@ class Meter(models.Model):
 
     class Meta:
         ordering = ['name']
+        verbose_name = 'Счетчик'
+        verbose_name_plural = 'Счетчики'
 
     def __str__(self):
         return f"{self.name}"
@@ -17,6 +19,10 @@ class Meter(models.Model):
 
 class TypeMeter(models.Model):
     title = models.CharField(max_length=200, unique=True)
+
+    class Meta:
+        verbose_name = 'Тип счетчика'
+        verbose_name_plural = 'Типы счетчиков'
 
     def __str__(self):
         return self.title
@@ -30,6 +36,8 @@ class Indication(models.Model):
 
     class Meta:
         ordering = ['-created']
+        verbose_name = 'Показание'
+        verbose_name_plural = 'Покозания'
 
     def __str__(self):
         return f"{self.meter.name}"
@@ -40,8 +48,8 @@ class ItemMeter(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owen')
 
     class Meta:
-        verbose_name = 'User meter'
-        verbose_name_plural = 'User meters'
+        verbose_name = 'Владелец счетчика'
+        verbose_name_plural = 'Владелецы счетчиков'
 
     def __str__(self):
         return f"{self.meter.name}"

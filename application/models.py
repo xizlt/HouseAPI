@@ -15,6 +15,8 @@ class Application(models.Model):
 
     class Meta:
         ordering = ['-created']
+        verbose_name = 'Заявка'
+        verbose_name_plural = 'Заявки'
 
     def __str__(self):
         return self.title
@@ -22,6 +24,10 @@ class Application(models.Model):
 
 class TypeApplication(models.Model):
     title = models.CharField(max_length=200, unique=True)
+
+    class Meta:
+        verbose_name = 'Тип заявки'
+        verbose_name_plural = 'Типы заявок'
 
     def __str__(self):
         return self.title

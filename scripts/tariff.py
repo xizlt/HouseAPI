@@ -23,7 +23,6 @@ class Tariff(object):
 
     def accrual(self, trf, meter__type_id):
         """
-        Записывает значение счетчикам по нормативу, если непредоставлены данные.
         :param trf: Dick
         :param meter__type_id: Int
         :return:
@@ -51,7 +50,7 @@ class Tariff(object):
 
             for i in indications:
                 if i['created'].date() >= date_check_start and i['created'].date() <= date_check_end:
-                    """Простовляет в used кол-во потребления"""
+                    """Проставляет в used кол-во потребления"""
                     indication = Indication.objects.filter(meter_id=i['meter_id']).order_by('-created')[:2]
                     if indication.count() <= 1:
                         Indication.objects.filter(meter_id=indication[0].meter_id,
@@ -103,11 +102,15 @@ if '__main__' == __name__:
 
     if tariff.schedule(eln):
         tariff.accrual(eln, meter__type_id=5)
+
     if tariff.schedule(eld):
         tariff.accrual(eld, meter__type_id=4)
+
     if tariff.schedule(gas):
         tariff.accrual(gas, meter__type_id=3)
+
     if tariff.schedule(hw):
         tariff.accrual(hw, meter__type_id=2)
+
     if tariff.schedule(cw):
         tariff.accrual(cw, meter__type_id=1)
