@@ -47,7 +47,7 @@ class ProfileAdmin(admin.ModelAdmin):
             'fields': ('user', 'date_of_birth', 'photo', 'status', 'phone')
         }),
         ('Address', {
-            'fields': ('city', 'street', 'house', 'flat')
+            'fields': ('area', 'city', 'street', 'house', 'flat')
         }),
         ('Ban', {
             'fields': ('ban', ('ban_start', 'ban_end',))

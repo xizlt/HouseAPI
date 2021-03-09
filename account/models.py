@@ -7,12 +7,13 @@ class Profile(models.Model):
     date_of_birth = models.DateField("Дата рождения", blank=True, null=True)
     photo = models.ImageField("Аватарка", upload_to='users/%Y/%m/%d/', blank=True)
     status = models.ForeignKey('Status', on_delete=models.CASCADE, blank=True, null=True)
-
     phone = models.IntegerField("Телефон", blank=True, null=True)
+
     city = models.CharField("Город", default="Санкт-Петербург", max_length=100)
     street = models.CharField("Улица", max_length=100, default="Невский")
     house = models.PositiveSmallIntegerField("Дом", default=100)
     flat = models.PositiveSmallIntegerField("Квартира", blank=True, null=True)
+    area = models.PositiveSmallIntegerField("Площадъ квартиры", blank=True, null=True)
 
     ban = models.BooleanField("Блокировка", default=False)
     ban_start = models.DateField("Начало блокировки", blank=True, null=True)
